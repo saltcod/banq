@@ -1,7 +1,9 @@
 import React from 'react'
 import Badge from './Badge';
+import { observer } from "mobx-react-lite";
+import WordLink from './WordLink';
 
-export interface RecordProps {
+export interface TransactionProps {
 	date: Date;
 	name: string;
 	amount: number;
@@ -36,7 +38,6 @@ function cleanString( str: string ) {
 	return description
 }
 
-
 // Get the type of record:  transaction,
 function getRecordType( record: string ): RecordType {
 	if ( record.includes( 'INTERNET TRANSFER' ) ) {
@@ -62,19 +63,31 @@ function getRecordType( record: string ): RecordType {
 
 }
 
-export default function Record( { date, name, amount }: RecordProps ) {
+
+
+function Transaction( { date, name, amount }: TransactionProps ) {
+
+	const cleanedName = cleanString( name );
 
 	return (
-		<div className='flex gap-4'>
-			<span>{date.toLocaleDateString( "en-CA", {
+		<div className='flex w-full gap-4 pb-2 border-b'>
+			<span> {date}</span>
+
+			{/* <span className='text-gray-400'>{date.toLocaleDateString( "en-CA", {
 				year: "numeric",
 				month: "2-digit",
 				day: "2-digit",
-			} )}</span>
+			} )}</span> */}
 
-			<span>{cleanString( name )}</span>
-			<span>${amount}</span>
+			<span className='flex gap-1'>
+				{cleanedName.split( ' ' ).map( ( word, i ) => word.length > 1 && <WordLink key={`${date}-${word}-${i}`} word={word} /> )}
+			</span>
+
+			<span className='ml-auto'>${amount}</span>
+
 			<Badge type={getRecordType( name )} />
 		</div>
 	)
 }
+
+export default observer( Transaction )

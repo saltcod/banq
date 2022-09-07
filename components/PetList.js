@@ -4,7 +4,8 @@ function PetList({ store }) {
 	console.log(store.pets);
 	return (
 		<div>
-			the PetList {store.storeDetails}
+			<h2 className="font-bold">The PetList</h2>
+			<p>{store.storeDetails}</p>
 			<p className="mt-4">
 				<button
 					onClick={() => console.log(store.createPet({ name: "Victor" }))}

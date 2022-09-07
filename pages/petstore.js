@@ -5,7 +5,7 @@ export default function petstore() {
 	const store = new PetOwnerStore();
 
 	return (
-		<div className="container mt-12">
+		<div className="container mx-auto mt-12">
 			<PetList store={store} />
 		</div>
 	);

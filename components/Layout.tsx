@@ -1,10 +1,13 @@
 import Head from "next/head";
-import { JsxElement } from "typescript";
 import { Footer } from "./Footer";
+import TransactionStore from '../stores/TransactionStore';
+import { observer } from "mobx-react-lite";
+import classNames from 'classnames';
+import { FC } from 'react'
+import Link from 'next/link'
+// const store = new TransactionStore();
 
-const filters = ['Debit', 'E-Transfer', "Payment Transfer", 'Retail Purchase', "Bill Pay"];
-
-export default function Layout({ children }: JsxElement) {
+const Layout: FC = ( { children } ) => {
 	return (
 		<>
 			<Head>
@@ -14,15 +17,19 @@ export default function Layout({ children }: JsxElement) {
 
 			<main className="container flex gap-12 mx-auto mt-12 font-serif">
 				<aside>
-					<p className="text-lg font-bold">banq</p>
+					<p className="text-lg font-bold">
+						<Link href="/">
+							<a>
+								Banq
+							</a>
+						</Link></p>
 
-					<ul className="grid gap-2 mt-12">
-						{filters.map(filter => <li><button className="p-1 text-xs uppercase bg-gray-200">{filter}</button></li>)}
-					</ul>
 				</aside>
-				<div>{children}</div>
+				<div className="w-full">{children}</div>
 			</main>
 			<Footer />
 		</>
 	);
 }
+
+export default observer( Layout );
