@@ -22,8 +22,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "stores/TodoStore.js"  ],
+    "**/*.tsx",
+    "stores/TodoStore.js"
+  ],
   "exclude": [
     "node_modules"
   ]

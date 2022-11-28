@@ -5,7 +5,7 @@ import {
 	observable,
 	computed,
 	runInAction,
-	toJS
+	toJS,
 } from "mobx";
 
 class TransactionStore {
@@ -18,7 +18,6 @@ class TransactionStore {
 		makeObservable(this, {
 			active: observable,
 			searchTerm: observable,
-			logit: action,
 			loading: observable,
 			transactions: observable,
 			setSearchTerm: action,
@@ -26,10 +25,6 @@ class TransactionStore {
 			filteredTransactions: computed,
 			filteredTransactionsSubTotal: computed,
 		});
-		autorun(() => console.log(this.filteredTransactionsSubTotal));
-	}
-	logit(value) {
-		console.log(`hiii + ${value}`);
 	}
 
 	get totalActive() {
@@ -37,10 +32,9 @@ class TransactionStore {
 	}
 
 	get filteredTransactions() {
-		console.log(this.transactions)
 		return this.transactions.filter((item) => {
-			const JSifiedItem = toJS(item)
-			const name = JSifiedItem[1]
+			const JSifiedItem = toJS(item);
+			const name = JSifiedItem[1];
 			if (name) {
 				return name.toLowerCase().includes(this.searchTerm.toLowerCase());
 			}
