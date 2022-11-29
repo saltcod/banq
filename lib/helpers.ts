@@ -35,7 +35,7 @@ export async function getSupaResults(name: string, years: string, divisions: str
 
   if (divisions) {
     const decodedDivisions = decodeURI(divisions)
-    supaQuery = supaQuery.in('division', decodedDivisions.split(','))
+    supaQuery = supaQuery.in('runner_class', decodedDivisions.split(','))
   }
 
   let { data, error } = await supaQuery

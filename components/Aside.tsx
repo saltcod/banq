@@ -8,7 +8,7 @@ const YEARS = [
   2021,
 ]
 
-const DIVISIONS = ['LM20-24', 'LM30-34']
+const DIVISIONS = ['LM20-24', 'LM30-34', 'LM40-44']
 
 const Aside = () => {
   const router = useRouter()

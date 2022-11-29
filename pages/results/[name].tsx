@@ -19,10 +19,6 @@ const Home = () => {
     queryFn: () => getSupaResults(name, years, divisions),
   })
 
-  if (isLoading) {
-    return <span>Loading...</span>
-  }
-
   return <div>{data ? <Table results={data} /> : <span>Nothing found</span>}</div>
 }
 export default Home
